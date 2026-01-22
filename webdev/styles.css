@@ -1,0 +1,79 @@
+/* Shared site stylesheet: grey + warm beige theme */
+:root{
+  --bg: #f5f2eb;         /* page background (very light beige) */
+  --surface: #f9f6f0;    /* cards, nav (soft off-white) */
+  --muted: #8b8376;      /* secondary text (muted taupe) */
+  --text: #2b2b2b;       /* primary text (dark grey) */
+  --accent: #cbb28a;     /* warm beige accent */
+  --accent-2: #a8926b;   /* deeper beige for gradients */
+  --card-shadow: 0 8px 30px rgba(43,40,36,0.06);
+}
+
+html,body{height:100%;}
+body{ background:var(--bg); color:var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+.navbar{ background:var(--surface) !important; box-shadow: 0 2px 8px rgba(15,23,42,0.04); border-radius: 10px; }
+.card{ border:0; border-radius:12px; box-shadow:var(--card-shadow); }
+.product-card img { height:220px; object-fit:cover; border-top-left-radius:12px; border-top-right-radius:12px; }
+
+.hero{ min-height: 360px; display:flex; align-items:center; background-size:cover; background-position:center; position:relative; border-radius:12px; overflow:hidden; }
+.hero-small{ position:relative; min-height:220px; background-position:center; background-size:cover; border-radius:10px; overflow:hidden; }
+.hero::before, .hero-small::before{
+  content:''; position:absolute; inset:0; /* subtle warm overlay to keep text readable while matching beige theme */
+  background:linear-gradient(180deg, rgba(15,15,15,0.06), rgba(168,140,95,0.06)); mix-blend-mode:multiply; pointer-events:none;
+}
+
+.btn-primary{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); border: none; box-shadow: 0 8px 18px rgba(168,140,95,0.12); color: #fff; }
+.btn-outline-secondary{ border-radius:10px }
+
+footer{ background:transparent; color:var(--muted); }
+
+.upload-note{ font-size:0.9rem; color:var(--muted); }
+
+/* small utility for muted text where pages use .text-muted class */
+.text-muted{ color:var(--muted) !important; }
+
+/* Ensure navbar links are readable on light/beige surfaces introduced by the theme */
+.navbar, .navbar a, .navbar .nav-link, .navbar .navbar-brand { color: var(--text) !important; }
+.navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--accent-2) !important; }
+.navbar .nav-link.active { color: var(--accent-2) !important; }
+/* Specific bootstrap variants: override both dark and light helper classes so links remain legible */
+.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-brand { color: var(--text) !important; }
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand { color: var(--text) !important; }
+.navbar .navbar-toggler-icon { filter: none !important; opacity: .9; }
+
+/* Header and navbar tweaks for modern layout */
+.navbar-brand{ font-weight:700; letter-spacing:0.2px; }
+.navbar { padding: .6rem 1rem; }
+
+/* cart badge */
+#cartCount{ transform:translateY(-1px); }
+
+/* hero adjustments for different screen sizes */
+header h1.display-1{ font-size:clamp(2.2rem,5vw,4.2rem); line-height:1.02; }
+
+/* product card subtle hover */
+.product-card{ transition:transform .22s ease, box-shadow .22s ease; }
+.product-card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(43,40,36,0.12); }
+
+/* responsive grid spacing tweak */
+#productGrid .col-sm-6{ display:flex; }
+#productGrid .card{ flex:1 1 auto; display:flex; flex-direction:column; }
+
+/* small utilities */
+.muted-small{ font-size:0.9rem; color:var(--muted); }
+
+/* mobile navbar: make toggler visible on custom background */
+.navbar .navbar-toggler{ border-radius:8px; }
+
+/* make images in hero responsive */
+.hero-image{ max-width:100%; height:auto; border-radius:12px; }
+
+/* By default, hide the checkbox column */
+.check-col { display: none; }
+
+/* When the table has 'edit-mode' class, show checkboxes */
+.table.edit-mode .check-col { display: table-cell; }
+
+/* Optional: Hide individual remove buttons when in edit mode to prevent confusion */
+.table.edit-mode .remove-col-btn { display: none; }
